@@ -16,7 +16,9 @@ class PokemonCubit extends Cubit<PokemonState> {
       : super(PokemonInitial());
 
   Future<void> getPokemonList() async {
+    ///checks the connection status from device
     final connectivityStatus = await connectivity.checkConnectivity();
+    ///if n connection found, get the local list
     if(connectivityStatus == ConnectivityResult.none) {
       getLocalPokemonList();
     }else{
